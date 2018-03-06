@@ -1,5 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const PATHS = {
     source: path.join(__dirname, 'src'),
@@ -8,34 +9,39 @@ const PATHS = {
 
 module.exports = {
     entry: {
-      app: [
-        PATHS.source + '/js/index.js',
-        PATHS.source + '/sass/main.scss'
-      ]
+        app: [
+            PATHS.source + '/js/index.js',
+            PATHS.source + '/sass/main.sass'
+        ]
     },
     output: {
-      path: PATHS.build,
-      filename: '[name].js'
+        path: PATHS.build,
+        filename: 'js/[name].js'
     },
     module: {
-      rules: [
-        {
-          test: /\.s[ac]ss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: ['css-loader', 'sass-loader']
-          })
-        },
-        {
-          test: /\.css$/,
-          use: ExtractTextPlugin.extract({
-            fallback: "style-loader",
-            use: ['css-loader']
-          })
-        }
-      ]
+        rules: [
+            {
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ['css-loader']
+                })
+            },
+            {
+                test: /\.s[ac]ss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: ['css-loader', 'sass-loader']
+                })
+            }
+        ]
     },
     plugins: [
-      new ExtractTextPlugin("[name].css"),
+        new ExtractTextPlugin("css/[name].css"),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            chunks: ['app'],
+            template: PATHS.source + '/pages/index.html'
+        })
     ]
 };
