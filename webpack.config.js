@@ -36,6 +36,11 @@ module.exports = {
             }
         ]
     },
+    devServer: {
+        contentBase: path.join(__dirname, "dist"),
+        compress: true,
+        host: '0.0.0.0'
+    },
     plugins: [
         new ExtractTextPlugin("css/[name].css"),
         new HtmlWebpackPlugin({
