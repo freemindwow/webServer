@@ -1,6 +1,6 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
     source: path.join(__dirname, 'src'),
@@ -35,11 +35,6 @@ module.exports = {
                 })
             }
         ]
-    },
-    devServer: {
-        contentBase: path.join(__dirname, "dist"),
-        compress: true,
-        host: '0.0.0.0'
     },
     plugins: [
         new ExtractTextPlugin("css/[name].css"),
