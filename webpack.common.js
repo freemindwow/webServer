@@ -33,6 +33,30 @@ module.exports = {
                     fallback: "style-loader",
                     use: ['css-loader', 'sass-loader']
                 })
+            },
+            {
+                test: /\.(png|jpe?g|gif|svg)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'images/[name].[ext]',
+                            publicPath: './../'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'fonts/[name].[ext]',
+                            publicPath: './../'
+                        }
+                    }
+                ]
             }
         ]
     },
