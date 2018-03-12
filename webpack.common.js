@@ -24,14 +24,14 @@ module.exports = {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ['css-loader']
+                    use: ['css-loader', 'resolve-url-loader']
                 })
             },
             {
                 test: /\.s[ac]ss$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: ['css-loader', 'sass-loader']
+                    use: ['css-loader', 'resolve-url-loader', 'sass-loader?sourceMap']
                 })
             },
             {
