@@ -40,8 +40,9 @@ module.exports = {
                     {
                         loader: 'file-loader',
                         options: {
-                            name: 'images/[name].[ext]',
-                            publicPath: './../'
+                            name: '[path][name].[ext]',
+                            publicPath: '',
+                            context: 'src'
                         }
                     }
                 ]
@@ -57,6 +58,10 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.html$/,
+                use: ['html-loader']
             }
         ]
     },
