@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -12,6 +13,10 @@ module.exports = {
         app: [
             PATHS.source + '/js/index.js',
             PATHS.source + '/sass/main.sass'
+        ],
+        bootstrap: [
+            PATHS.source + '/js/bootstrap.js',
+            PATHS.source + '/sass/bootstrap.sass'
         ]
     },
     output: {
@@ -69,8 +74,15 @@ module.exports = {
         new ExtractTextPlugin("css/[name].css"),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            chunks: ['app'],
-            template: PATHS.source + '/pages/index.html'
+            chunks: ['app', 'bootstrap'],
+            template: PATHS.source + '/pages/index.html',
+            minify: {
+                removeScriptTypeAttributes: true
+            }
+        }),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery'
         })
     ]
 };
